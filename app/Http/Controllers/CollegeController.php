@@ -24,7 +24,7 @@ class CollegeController extends Controller
         ]);
         
         College::create($request->all());
-        return redirect()->route('home_page.index')->with('message', 'College has been saved successfully');
+        return redirect()->route('colleges.index')->with('message', 'College has been saved successfully');
     }
 
     // Read
@@ -59,7 +59,7 @@ class CollegeController extends Controller
         $college = College::find($college_id);
         $college->update($request->all());
 
-        return redirect()->route('home_page.index')->with('message', 'College has been updated successfully');
+        return redirect()->route('colleges.index')->with('message', 'College has been updated successfully');
     }
 
     // Delete
@@ -68,6 +68,6 @@ class CollegeController extends Controller
     public function destroy($college_id){
         $college = College::find($college_id);
         $college->delete();
-        return back()->with('message', 'college and comments have been deleted successfully');
+        return back()->with('message', 'College has been deleted successfully');
     }
 }

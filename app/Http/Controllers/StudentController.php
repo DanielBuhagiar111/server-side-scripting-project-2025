@@ -34,7 +34,7 @@ class StudentController extends Controller
         Student::create($request->all());
     
         // Redirect back to the posts index page with a success message
-        return redirect()->route('home_page.index')->with('message', 'Student has been saved successfully');
+        return redirect()->route('students.index')->with('message', 'Student has been saved successfully');
     }
 
     // Read
@@ -79,7 +79,7 @@ class StudentController extends Controller
         $student = Student::find($student_id);
         $student->update($request->all());
 
-        return redirect()->route('home_page.index')->with('message', 'Student has been updated successfully');
+        return redirect()->route('students.index')->with('message', 'Student has been updated successfully');
     }
 
     // Delete
