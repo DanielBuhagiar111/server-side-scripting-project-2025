@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\College;
 use Illuminate\Http\Request;
 
+
 class CollegeController extends Controller
 {   
     // Create
@@ -29,9 +30,9 @@ class CollegeController extends Controller
 
     // Read
 
-    // Display all collages
-    public function index() {
-        $colleges = College::orderBy('name')->get();
+    public function index()
+    {
+        $colleges = College::all(); // Assuming you have a College model
         return view('colleges.index', compact('colleges'));
     }
     

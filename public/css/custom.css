@@ -1,0 +1,12 @@
+html, body {
+	height: 100%; /* Ensure the page takes up full height */
+	margin: 0; /* Remove default margin */
+}
+  
+.gradient-custom {
+	min-height: 100vh; /* Make sure the gradient covers at least the full viewport height */
+	background: #4facfe; /* Fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom right, rgba(79, 172, 254, 1), rgba(0, 242, 254, 1)); /* For older browsers */
+	background: linear-gradient(to bottom right, rgba(79, 172, 254, 1), rgba(0, 242, 254, 1)); /* Standard gradient */
+}
+  

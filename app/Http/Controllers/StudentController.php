@@ -39,19 +39,33 @@ class StudentController extends Controller
 
     // Read
 
-    // Display all students
-    public function index() {
-        $colleges = College::orderBy('name')->pluck('name', 'id')->prepend('All Colleges', '');
-
-        if (request('college_id') == null) {
-            $students = Student::orderBy('name')->get();
-        } else {
-            $students = Student::where('college_id', request('college_id'))->orderBy('name')->get();
+    // Display students
+    // Also handles the sort logic
+    // Also handles the filter
+    public function index(Request $request)
+    {
+        $sort = $request->get('sort', null);
+        $college_id = $request->get('college_id', null);
+    
+        $query = Student::query();
+    
+        if ($college_id) {
+            $query->where('college_id', $college_id);
         }
-        
-        return view('students.index', compact('students', 'colleges'));
+    
+        if ($sort == 'name_asc') {
+            $students = $query->orderBy('name', 'asc')->get();
+        } elseif ($sort == 'name_desc') {
+            $students = $query->orderBy('name', 'desc')->get();
+        } else {
+            $students = $query->get();
+        }
+    
+        $colleges = College::orderBy('name')->pluck('name', 'id')->prepend('All Colleges', '');
+    
+        return view('students.index', compact('students', 'colleges', 'college_id'));
     }
-
+    
     // Display contact details
     public function show($student_id) {
         $student = Student::find($student_id);

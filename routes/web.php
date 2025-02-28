@@ -28,8 +28,8 @@ Route::get('/colleges/create', [CollegeController::class, 'create'])->name('coll
 Route::post('/colleges', [CollegeController::class, 'store'])->name('colleges.store');
 
 // Route to show all colleges
-Route::get('/home_page', [CollegeController::class, 'index'])->name('colleges.index');
-
+Route::get('/colleges', [CollegeController::class, 'index'])->name('colleges.index');
+ 
 // Route to show the details of a specific college
 Route::get('/colleges/{college_id}', [CollegeController::class, 'show'])->name('colleges.show');
 
