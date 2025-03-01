@@ -68,7 +68,7 @@ class StudentController extends Controller
         return view('students.index', compact('students', 'colleges', 'college_id'));
     }
     
-    // Display contact details
+    // Display student details
     public function show($student_id) {
         $student = Student::find($student_id);
         return view('students.show', compact('student'));
@@ -79,17 +79,20 @@ class StudentController extends Controller
     // Display the edit form
     public function edit($student_id){
         $student = Student::find($student_id);
-        return view('students.edit', compact('student')); 
+        $colleges = College::orderBy('name')->pluck('name', 'id')->prepend('All Colleges', '');
+        return view('students.edit', compact('colleges', 'student'));
     }
 
     // Update the user details from the edit form
     public function update($student_id, Request $request){
         $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:students,email'. $student_id, // Exclude the current students email from being unique
+            'email' => 'required|email|unique:students,email,'. $student_id, // Exclude the current students email from being unique
             'phone' => 'required|regex:/^\d{8}$/',  // Ensure phone has exactly 8 digits
             'dob' => 'required|date|before:today', // Validate that the date of birth is a valid date and in the past
             'college_id' => 'required|exists:colleges,id', // Ensure that college_id exists in the colleges table
+        ], [
+            'phone.regex' => 'The phone number must be exactly 8 digits long.', // Custom error message to show what format is expected
         ]);
 
         $student = Student::find($student_id);
