@@ -37,7 +37,7 @@
 <div class="form-group row">
     <label for="dob" class="col-md-3 col-form-label">DOB</label>
     <div class="col-md-9">
-        <input type="text" name="dob" id="dob" value="{{ old('dob', $student->dob ?? '') }}" class="form-control @error('dob') is-invalid @enderror">
+        <input type="date" name="dob" id="dob" value="{{ old('dob', $student->dob ?? '') }}" class="form-control @error('dob') is-invalid @enderror">
         @error('dob')
             <div class="invalid-feedback">
                 {{ $message }}

@@ -28,6 +28,8 @@ class StudentController extends Controller
             'phone' => 'required|regex:/^\d{8}$/',  // Ensure phone has exactly 8 digits
             'dob' => 'required|date|before:today', // Validate that the date of birth is a valid date and in the past
             'college_id' => 'required|exists:colleges,id', // Ensure that college_id exists in the colleges table
+        ], [
+            'phone.regex' => 'The phone number must be exactly 8 digits long.', // Custom error message to show what format is expected
         ]);
     
         // Create the student
