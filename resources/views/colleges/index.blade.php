@@ -5,8 +5,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-title bg-dark text-light">
+                <div class="card bg-dark text-light">
+                    <div class="card-header card-title">
                         <div class="d-flex align-items-center">
                             <h2 class="mb-0">All Colleges</h2>
                             <div class="ml-auto">

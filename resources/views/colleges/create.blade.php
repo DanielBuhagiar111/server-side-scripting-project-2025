@@ -4,8 +4,8 @@
 <main class="py-5 gradient-custom text-light">
     <div class="container">
         <!-- Card to hold the content -->
-        <div class="card">
-            <div class="card-header card-title bg-dark text-light">
+        <div class="card bg-dark text-light">
+            <div class="card-header card-title">
                 <div class="d-flex align-items-center">
                     <h2 class="mb-0">Add College</h2>
                     <div class="ml-auto d-flex align-items-center">
