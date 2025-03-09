@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('colleges', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('address');
-            $table->timestamps();
+            $table->id(); // AutoIncrementing id
+            $table->string('name')->unique(); // Unique String Name
+            $table->string('address'); // String address
+            $table->timestamps(); // Timestamps for auditing
         });
     }
 

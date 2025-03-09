@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->date('dob');
-            $table->foreignId('college_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+            $table->id(); // AutoIncrementing id
+            $table->string('name'); // String Name
+            $table->string('email')->unique(); // Unique Sting email
+            $table->string('phone'); // String phone number
+            $table->date('dob'); // Date date of birth
+            $table->foreignId('college_id')->constrained()->onDelete('cascade'); // A college_id as the foreign id with cascade enabled to delete the students when a college is deleted
+            $table->timestamps(); // Timestamps for auditing
         });
     }
 

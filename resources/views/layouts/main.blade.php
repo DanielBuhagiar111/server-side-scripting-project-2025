@@ -18,6 +18,7 @@
     
   </head>
   <body>
+    {{-- Header that will be shown in every page --}}
     <nav class="navbar navbar-expand-lg bg-dark">
       <div class="container">  
             <h1 class="text-light">Student App</h1>
@@ -30,6 +31,7 @@
       </div>
     </nav>
 
+    {{-- Show content from the other views that extend the main view --}}
     @yield('content')
 
   </body>

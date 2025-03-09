@@ -1,4 +1,5 @@
 @extends('layouts.main')
+{{-- Extends the content in the main layout --}}
 
 @section('content')
 <main class="py-5 gradient-custom text-light">
@@ -10,6 +11,7 @@
                         <div class="d-flex align-items-center">
                             <h2 class="mb-0">All Colleges</h2>
                             <div class="ml-auto">
+                                {{-- Button that redirects to the create page --}}
                                 <a href="{{ route('colleges.create') }}" class="btn btn-success">
                                     <i class="bi bi-plus"></i> Add New
                                 </a>
@@ -18,6 +20,7 @@
                     </div>
                     
                     <div class="card-body bg-dark">
+                        {{-- Display error and success messages passed from other pages --}}
                         @if ($message = session('message'))
                             <tr>
                                 <td colspan="8">
@@ -43,12 +46,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- Display all colleges information --}}
                                     @foreach ($colleges as $index => $college)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $college->name }}</td>
                                             <td>{{ $college->address }}</td>
                                             <td width="150" class="text-center">
+                                                {{-- Buttons to call different routes --}}
                                                 <a href="{{ route('colleges.show', $college->id) }}" class="btn btn-sm btn-outline-info" title="Show">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
@@ -61,6 +66,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    {{-- Delete Button form --}}
                                     <form id="form-delete" method="POST" style="display: none">
                                         @method('DELETE')
                                         @csrf

@@ -1,4 +1,5 @@
 @extends('layouts.main')
+{{-- Extends the content in the main layout --}}
 
 @section('content')
 <main class="py-5 gradient-custom text-light">
@@ -10,17 +11,18 @@
                         <div class="d-flex align-items-center">
                             <h2 class="mb-0">All Students</h2>
                             <div class="ml-auto d-flex align-items-center">
-
+                                {{-- Includes the filter partial view --}}
                                 @include('students._filter')
 
+                                {{-- Button that redirects to the create page --}}
                                 <a href="{{ route('students.create') }}" class="btn btn-success">
                                     <i class="bi bi-plus"></i> Add New
                                 </a>
                             </div>
                         </div>
                     </div>
-                    
                     <div class="card-body bg-dark">
+                        {{-- Display error and success messages passed from other pages --}}
                         @if ($message = session('message'))
                             <tr>
                                 <td colspan="8">
@@ -40,6 +42,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
+                                        {{-- Include the sort partial view next to the name to indicate what yourr sorting by --}}
                                         <th scope="col">Name  @include('students._sort')</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Phone</th>
@@ -49,6 +52,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- Display all students information --}}
                                     @foreach ($students as $index => $student)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
@@ -58,6 +62,7 @@
                                             <td>{{ $student->dob }}</td>
                                             <td>{{ $student->college->name }}</td>
                                             <td width="150" class="text-center">
+                                                {{-- Buttons to call different routes --}}
                                                 <a href="{{ route('students.show', $student->id) }}" class="btn btn-sm btn-outline-info" title="Show">
                                                     <i class="bi bi-eye"></i>
                                                 </a>
@@ -70,6 +75,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
+                                    {{-- Delete Button form --}}
                                     <form id="form-delete" method="POST" style="display: none">
                                         @method('DELETE')
                                         @csrf

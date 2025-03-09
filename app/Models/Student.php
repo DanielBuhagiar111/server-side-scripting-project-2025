@@ -11,7 +11,6 @@ class Student extends Model
 
     // Enable mass assignment
     protected $fillable = ["name", "email", "phone", "dob", "college_id"];
-
     
     // A student belongs to one college
     public function college(){

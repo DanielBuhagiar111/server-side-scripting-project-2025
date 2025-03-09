@@ -1,4 +1,5 @@
 @extends('layouts.main')
+{{-- Extends the content in the main layout --}}
 
 @section('content')
 <main class="py-5 gradient-custom text-light">
@@ -12,6 +13,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
+                                {{-- Displays the Selected Students information --}}
                                 <div class="form-group row">
                                     <label class="col-md-3 col-form-label">Name</label>
                                     <div class="col-md-9">
@@ -43,6 +45,7 @@
                                     </div>
                                 </div>
                                 <hr>
+                                {{-- Button that takes the user back to the index page --}}
                                 <div class="form-group row mb-0">
                                     <div class="col-md-9 offset-md-3">
                                         <a href="{{ route('students.index') }}" class="btn btn-danger">Cancel</a>

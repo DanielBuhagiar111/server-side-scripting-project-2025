@@ -1,4 +1,5 @@
 @extends('layouts.main')
+{{-- Extends the content in the main layout --}}
 
 @section('content')
 <main class="py-5 gradient-custom text-light">
@@ -13,6 +14,7 @@
             </div>
             
             <div class="card-body bg-dark">
+                {{-- Form that when submited calls the update route, it includes the form partial view --}}
                 <form action="{{ route('students.update', $student->id) }}" method="POST">
                   @method('PUT')
                   @csrf
