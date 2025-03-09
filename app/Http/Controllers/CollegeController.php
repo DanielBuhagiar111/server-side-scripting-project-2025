@@ -12,8 +12,12 @@ class CollegeController extends Controller
 
     // Create a new college
     public function create() {
-        $college = new College();
-        return view('colleges.create', compact('college'));
+        try{
+            $college = new College();
+            return view('colleges.create', compact('college'));
+        } catch (\Exception $e) {
+            return redirect()->route('colleges.index')->with('error', 'Could not open the create page! An error occurred.');
+        }
     }
 
     // Store the form data
@@ -23,31 +27,47 @@ class CollegeController extends Controller
             'name' => 'required|unique:colleges,name',
             'address' => 'required'
         ]);
-        
-        College::create($request->all());
-        return redirect()->route('colleges.index')->with('message', 'College has been saved successfully');
+
+        try{ 
+            College::create($request->all());
+            return redirect()->route('colleges.index')->with('message', 'College has been saved successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('colleges.index')->with('error', 'College was not saved successfully! An error occurred.');
+        }
     }
 
     // Read
 
     public function index()
     {
-        $colleges = College::all(); // Assuming you have a College model
-        return view('colleges.index', compact('colleges'));
+        try{
+            $colleges = College::all(); 
+            return view('colleges.index', compact('colleges'));
+        } catch (\Exception $e) {
+            return redirect()->route('colleges.index')->with('error', 'Could not show Colleges! An error occurred.');
+        }
     }
     
     // Display college details
     public function show($college_id) {
-        $college = College::find($college_id);
-        return view('colleges.show', compact('college'));
+        try {
+            $college = College::find($college_id);
+            return view('colleges.show', compact('college'));
+        } catch (\Exception $e) {
+            return redirect()->route('colleges.index')->with('error', 'Could not view College! An error occurred.');
+        }
     }
 
     // Update
 
     // Display the edit form
     public function edit($college_id){
-        $college = College::find($college_id);
-        return view('colleges.edit', compact('college')); 
+        try {
+            $college = College::find($college_id);
+            return view('colleges.edit', compact('college')); 
+        } catch (\Exception $e) {
+            return redirect()->route('colleges.index')->with('error', 'Could not edit College! An error occurred.');
+        }
     }
 
     // Update the user details from the edit form
@@ -57,18 +77,26 @@ class CollegeController extends Controller
             'address' => 'required'
         ]);        
 
-        $college = College::find($college_id);
-        $college->update($request->all());
+        try {
+            $college = College::find($college_id);
+            $college->update($request->all());
 
-        return redirect()->route('colleges.index')->with('message', 'College has been updated successfully');
+            return redirect()->route('colleges.index')->with('message', 'College has been updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('colleges.index')->with('error', 'College was not updated successfully! An error occurred.');
+        }
     }
 
     // Delete
     
     // Destroy the college with the id $id
     public function destroy($college_id){
-        $college = College::find($college_id);
-        $college->delete();
-        return back()->with('message', 'College has been deleted successfully');
+        try {
+            $college = College::find($college_id);
+            $college->delete();
+            return back()->with('message', 'College has been deleted successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', 'College was not deleted successfully! An error occurred.');
+        }
     }
 }

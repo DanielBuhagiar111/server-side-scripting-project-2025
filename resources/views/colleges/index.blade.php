@@ -20,10 +20,17 @@
                     <div class="card-body bg-dark">
                         @if ($message = session('message'))
                             <tr>
-                                <td colspan="4">
+                                <td colspan="8">
                                     <div class="alert alert-success text-center">{{ $message }}</div>
                                 </td>
                             </tr>
+                        @endif
+                        @if ($error = session('error'))
+                        <tr>
+                            <td colspan="8">
+                                <div class="alert alert-danger text-center">{{ $error }}</div>
+                            </td>
+                        </tr>
                         @endif
                         <div class="table-responsive">
                             <table class="table table-dark table-bordered mb-0">

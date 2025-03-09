@@ -28,6 +28,13 @@
                                 </td>
                             </tr>
                         @endif
+                        @if ($error = session('error'))
+                        <tr>
+                            <td colspan="8">
+                                <div class="alert alert-danger text-center">{{ $error }}</div>
+                            </td>
+                        </tr>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-dark table-bordered mb-0">
                                 <thead>
